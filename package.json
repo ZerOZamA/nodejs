@@ -4,14 +4,24 @@
   "description": "api lvl  0",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZerOZamA/nodejs.git"
   },
   "keywords": [
     "api"
   ],
   "author": "zero_zama",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ZerOZamA/nodejs.git"
+  },
+  "homepage": "https://github.com/ZerOZamA/nodejs.git#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
   }
 }
