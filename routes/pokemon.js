@@ -13,7 +13,7 @@ pokemon.post("/", (req,res , next)=>{
 pokemon.get("/",async (req,res,next)=>{
     const pokemn = await db.query("SELECT * FROM pokemon");
 
-        return res.status(200).json(pokemn)
+        return res.status(200).json({code:1,mensage:pokemn});
         
         }); 
 
@@ -24,11 +24,11 @@ pokemon.get("/:id([0-9]{1,3})",async (req,res,next)=>{
     var pkid= pokemn[id];
     if (id <= 722){
         
-        return res.status(200).json(pkid);
+        return res.status(200).json({code: 1, mensage : pkid});
     }
     else{
 
-        return res.status(404).send("pokemon missing");
+        return res.status(404).json({code:404,mensage:"pokemon missing"});
     }
 
 });
@@ -45,8 +45,8 @@ pokemon.get("/:name([A-Za-z]+)",async(req,res,next)=>{
 
     });
    ( pokename.length > 0 )? 
-    res.status(200).send(pokename) :
-    res.status(404).send("not found");
+    res.status(200).json({code: 1, mensage : pokename}) :
+    res.status(404).json({code : 4040, mensage :"pokemon missing"});
 });
 
 module.exports=pokemon;
