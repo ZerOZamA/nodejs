@@ -3,13 +3,13 @@ const pokemon =express.Router();
 /*const poop = require('../pokedex.json').pokemon;*/
 const db =require("../config/database");
 
-pokemon.post("/", (req,res , next)=>{
+pokemon.post("/",async (req,res , next)=>{
     const { pok_name, pok_height, pok_weight, pok_base_experience}=req.body;
     if (pok_name && pok_height && pok_weight && pok_base_experience){
-        let query ="INSERT INTO pokemon(pok_id, pok_name, pok_height, pok_weight, pok_base_experience)";
-        query +=`VALUES ('${pok_name}','${pok_name}'',${pok_height}','${pok_weight}','${pok_base_experience}')`;
+        let query ="INSERT INTO pokemon(pok_name, pok_height, pok_weight, pok_base_experience)";
+        query +=` VALUES('${pok_name}','${pok_height}','${pok_weight}','${pok_base_experience}')`;
         const rows = await db.query(query);
-        console.log(rows)
+        
         if (rows.affectedRows==1){
             return res.status(201).json({code:201, message : " pokemon added "});
         }
@@ -18,7 +18,7 @@ pokemon.post("/", (req,res , next)=>{
     return res.status(500).json({code:500, message:"error datos incompletos "});
 }   
 );
-
+ 
 pokemon.get("/",async (req,res,next)=>{
     const pokemn = await db.query("SELECT * FROM pokemon");
 
