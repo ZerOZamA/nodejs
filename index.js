@@ -1,23 +1,38 @@
 const express = require('express');
+const jwt = require('jsonwebtoken');
 const app =express();
 const morgan = require('morgan');
+
+//db
+
 const pokemon = require('./routes/pokemon');
+
+//pagers
+
 const user = require('./routes/user');
+
+//middleware owo
+
+const aut = require('./middleware/auth')
+const notFound = require('./middleware/notFound')
+
+//not middleware uwu
+
+const indexing= require('./routing/index')
+
+//code use
+
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended : true}));
-app.get("/",(req,res,next)=>{
 
-return res.status(200).json({ code : 1,mensage:"Pokedex nacional kanto"});
+//vanillacode
 
-});
+app.get("/",indexing);
 app.use("/user",user);
+app.use(aut);
 app.use("/pokemon",pokemon);
 
-app.use( (rec , res , next) => {
-
-        return res.status('404').json({code:404, mensage : "pagina no encontrada se lo que intentas ¬¬ "});
-
-});
+app.use(notFound );
 
 app.listen(process.env.PORT || 3000 , ()=>{console.log('server running')});
