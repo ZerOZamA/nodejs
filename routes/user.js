@@ -46,7 +46,7 @@ user.post("/login",async(req,res,next)=>{
 
     }
     else {
-        return res.status(401).json({code:401, message:"error datos erroneos"});
+        return res.status(200).json({code:200, message:"error datos erroneos"});
     }
     
 }
