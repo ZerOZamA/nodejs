@@ -1,9 +1,15 @@
 window.onload=init;
 function init (){
-    document.querySelector('.btn-secondary').addEventListener('click',function(){
-        window.location.href="login.html"
-    });
-    document.querySelector('.btn-primary').addEventListener('clck',login);
+    if (!localStorage.getItem("token")){
+        document.querySelector('.btn-secondary').addEventListener('click',function(){
+            window.location.href="login.html"
+        });
+        document.querySelector('.btn-primary').addEventListener('clck',login);
+    }else{
+        window.location.href="pokedex.html";
+    }
+
+    
 }
 
 function signin(){
