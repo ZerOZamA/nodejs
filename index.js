@@ -21,7 +21,7 @@ const notFound = require('./middleware/notFound')
 const indexing= require('./routing/index')
 
 //code use
-app.use(cors)
+//app.use(cors)
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended : true}));
