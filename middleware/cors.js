@@ -1,4 +1,4 @@
-(req,res,next)=>{
+module.exports=(req,res,next)=>{
     res.header("Acces-Control-Allow-Origin",'*');
     res.header(
         "Acces-Control-Allow-Header",
